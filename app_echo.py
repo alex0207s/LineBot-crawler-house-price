@@ -28,7 +28,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def echo(event):
     
-    if event.source.user_id != "Udeadbeefdeadbeefdeadbeff":
+    if event.source.user_id != "Udeadbeefdeadbeefdeadbeef":
         line_bot_api.reply_message(
             event.reply_token, 
             TextSendMessage(text=event.message.text))
