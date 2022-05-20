@@ -30,7 +30,7 @@ def echo(event):
     
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeff":
         line_bot_api.reply_message(
-            event.reply_message, 
+            event.reply_token, 
             TextSendMessage(text=event.message.text))
 
 if __name__ == "__main__":
