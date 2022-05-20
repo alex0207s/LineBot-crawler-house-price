@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # 讀取 config
 config = configparser.ConfigParser()
-config.read('config.int')
+config.read('config.ini')
 
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
