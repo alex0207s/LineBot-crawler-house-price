@@ -9,7 +9,7 @@ def request_house_price():
     
     text = ""
     for i in range(5):
-        text += str(i)+". " + context[i]['a'] + " " + context[i]['tp'] + "\n"
+        text += str(i)+". " + context[i]['a'] + "\t" + context[i]['tp'] + "\n"
     return text
 
 @handler.add(MessageEvent, message=TextMessage)
