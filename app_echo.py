@@ -38,7 +38,7 @@ def request_house_price():
     text = ""
 
     context = res.json()
-    for i in range(context):
+    for i in range(5):
         text += str(i)+". " + context[i]['a'] + " " + context[i]['tp'] + "\n"
 
     return text
@@ -49,7 +49,7 @@ def echo(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=request_house_price())
+            TextSendMessage(text='gg')
         )
 
 if __name__ == "__main__":
