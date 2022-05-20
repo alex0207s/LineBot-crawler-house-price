@@ -15,7 +15,12 @@ def request_house_price():
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+        if event.message.text == "給我房價":
+            text = request_house_price()
+        else:
+            text = "功能尚未開發"
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=request_house_price())
+            TextSendMessage(text=text)
         )
