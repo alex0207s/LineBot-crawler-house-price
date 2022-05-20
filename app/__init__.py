@@ -1,6 +1,5 @@
 from flask import Flask
 from linebot import LineBotApi, WebhookHandler
-
 import configparser
 
 app = Flask(__name__)

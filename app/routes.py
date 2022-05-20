@@ -1,5 +1,5 @@
 from app import app, handler
-
+from flask import request, abort
 from linebot.exceptions import InvalidSignatureError
 
 # 接收 LINE 的資訊
