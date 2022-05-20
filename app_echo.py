@@ -49,7 +49,7 @@ def echo(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='gg')
+            TextSendMessage(text=request_house_price())
         )
 
 if __name__ == "__main__":
