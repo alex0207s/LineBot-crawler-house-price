@@ -7,7 +7,7 @@ def display_message(records):
     for record in records.items():
         text += '交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '\n\n'   
 
-    return text[:6]
+    return text
 
 def handle_house_price_data(raw_data):
     # house = {"交易日期":[], "地址":[], "總價":[], "總面積":[]}
@@ -25,9 +25,9 @@ def handle_house_price_data(raw_data):
         #     house["地址"].append(deal['a'][start_index::])
         #     house["總價"].append(deal['tp'])
     
-    print(records)
+    print(records[::6])
     sorted(records.items(), key=lambda x:x[1], reverse=True)
-    return display_message(records)
+    return display_message(records[::6])
 
     # text = ""
     # for i in range(1,6):
