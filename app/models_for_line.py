@@ -1,14 +1,14 @@
 from app import line_bot_api, handler
 
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-import requests
+# import requests
 
 import os 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 from time import sleep
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 import json
@@ -18,9 +18,9 @@ def get_chrom():
     d['goog:loggingPrefs'] = {'performance': 'ALL'}
     opt = webdriver.ChromeOptions()
     opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    opt.add_argument("--headless")
-    opt.add_argument("--disable-dev-shm-usage")
-    opt.add_argument("--no-sandbox")
+    # opt.add_argument("--headless")
+    # opt.add_argument("--disable-dev-shm-usage")
+    # opt.add_argument("--no-sandbox")
     opt.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
