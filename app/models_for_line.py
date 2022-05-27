@@ -28,7 +28,6 @@ def get_chrom():
 def get_search_url():
     driver = get_chrom()
     driver.get('https://lvr.land.moi.gov.tw/')
-  
     
     try :
         sleep(1)    
@@ -48,6 +47,7 @@ def get_search_url():
         # 勾選土地
         driver.execute_script("document.getElementById('customCheck2').click()")
         # 點選搜尋鍵
+        sleep(1)
         driver.find_element_by_link_text('搜尋').click()
 
         sleep(1)
