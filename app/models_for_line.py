@@ -79,6 +79,8 @@ def RequestHousePrice(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         if event.message.text == "給我房價":
             text = get_chrom()
+            if text == '':
+                text = '沒抓到東西'
         else:
             text = "功能尚未開發"
 
