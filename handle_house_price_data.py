@@ -18,7 +18,7 @@ def load_json_file():
     print(data)
 
 def handle_house_price_data(raw_data):
-    with open('/records_json.json') as f:
+    with open('/app/records_json.json') as f:
         data = json.load(f)
 
     print(data)
