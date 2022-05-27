@@ -36,6 +36,7 @@ def get_search_url():
         driver.execute_script("document.getElementById('l_town').value = 'M03'")
         driver.execute_script("document.getElementById('customCheck1').click()")
         driver.execute_script("document.getElementById('customCheck2').click()")
+        sleep(1)
         driver.find_element_by_link_text('搜尋').click()
 
         sleep(1)
