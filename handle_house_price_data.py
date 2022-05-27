@@ -16,5 +16,5 @@ def handle_house_price_data(raw_data):
 
     text = ""
     for i in range(1,6):
-        text += str(i) + '.\n交易日期: ' + house['交易日期'][i] + '\n地址: ' + house['地址'][i] + '\n總價: ' + str(int(house['總價'][i])/10000) + ' 萬' + '\n總面積: ' + house['總面積'][i] + '(坪)\n\n'
+        text += str(i) + '.\n交易日期: ' + house['交易日期'][i] + '\n地址: ' + house['地址'][i] + '\n總價: ' + str(int(house['總價'][i].replace(',', ''))/10000) + ' 萬' + '\n總面積: ' + house['總面積'][i] + '(坪)\n\n'
     return text
