@@ -4,7 +4,7 @@ target_address = [
 
 def display_message(records, num=6):
     text = ''
-    for record in records.items():
+    for record in records:
         text += '交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '\n\n'   
 
     return text
