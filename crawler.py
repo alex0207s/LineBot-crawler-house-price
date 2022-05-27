@@ -7,6 +7,7 @@ from time import sleep
 import os
 import json
 import requests
+from sympy import re
 
 def get_chrome():
     # chrome setting
@@ -49,10 +50,11 @@ def get_search_log():
     driver.find_element_by_link_text('搜尋').click()
 
     sleep(3)
-    return driver.get_log('performance')[1000::]
-    
+    request_log = driver.get_log('performance')[1000::]
+    driver.close()
+    return request_log
 
-def get_url():
+def get_url_from_connection_log():
     request_log = get_search_log()
 
     for i in range(len(request_log)):
@@ -62,5 +64,5 @@ def get_url():
                 if json.loads(tmp)['message']['params'].get('request').get('url') != None:
                     if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
                         print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
-                        driver.close()
+                        # driver.close()
                         return json.loads(tmp)['message']['params'].get('request').get('url')

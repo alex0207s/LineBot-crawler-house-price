@@ -1,16 +1,16 @@
 from app import line_bot_api, handler
-from crawler import get_url
+from crawler import get_url, get_url_from_connection_log
 
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
  
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+# from selenium import webdriver
+# from selenium.webdriver.support.ui import Select
+# from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-from time import sleep
+# from time import sleep
 
-import os
-import json
+# import os
+# import json
 import requests
 
 # def get_chrom():
@@ -74,7 +74,7 @@ import requests
 
 def request_house_price():
     # url = get_search_url()
-    url = get_url()
+    url = get_url_from_connection_log()
     # if url == 'fail':
     #     text = '網路壅塞，請重新嘗試!'
     #     print(text)
