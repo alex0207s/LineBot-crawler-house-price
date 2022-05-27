@@ -1,16 +1,14 @@
 from app import line_bot_api, handler
 
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-# import requests
-
-import os 
+ 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
-from time import sleep
-# from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from time import sleep
+
+import os
 import json
 
 def get_chrom():
@@ -42,7 +40,7 @@ def get_chrom():
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
-        # sleep(3)
+        sleep(1)
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_link_text('搜尋').click()
         
