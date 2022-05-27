@@ -1,5 +1,6 @@
 from app import line_bot_api, handler
 from crawler import get_house_pirce_data
+from handle_house_price_data import handle_house_price_data
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
  
 import requests
@@ -11,12 +12,13 @@ def request_house_price():
     # print(context)
     
     context = get_house_pirce_data()
-    print(context)
+    return handle_house_price_data(context)
+    # print(context)
 
-    text = ""
-    for i in range(5):
-        text += str(i)+". " + context[i]['a'] + "\t" + context[i]['tp'] + "\n"
-    return text
+    # text = ""
+    # for i in range(5):
+    #     text += str(i)+". " + context[i]['a'] + "\t" + context[i]['tp'] + "\n"
+    # return text
 
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
