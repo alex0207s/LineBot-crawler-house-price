@@ -10,7 +10,6 @@ def display_message(records, num=6):
     return text
 
 def handle_house_price_data(raw_data):
-    # house = {"交易日期":[], "地址":[], "總價":[], "總面積":[]}
     records = {}
 
     for i in range(len(raw_data)):
@@ -18,18 +17,6 @@ def handle_house_price_data(raw_data):
         if deal['a'][:3] in target_address or deal['a'][:4] in target_address:
             start_index = deal['a'].find('#') + 1 
             records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
-        # if deal['a'][:3] in target_address or deal['a'][:4] in target_address:
-        #     start_index = deal['a'].find('#') + 1 
-        #     house["交易日期"].append(deal['e'])
-        #     house["總面積"].append(deal['s'])
-        #     house["地址"].append(deal['a'][start_index::])
-        #     house["總價"].append(deal['tp'])
-    
-    # print(records[::6])
-    sorted(records.items(), key=lambda x:x[1], reverse=True)[:6]
-    return display_message(records)
 
-    # text = ""
-    # for i in range(1,6):
-    #     text += str(i) + '.\n交易日期: ' + house['交易日期'][i] + '\n地址: ' + house['地址'][i] + '\n總價: ' + str(int(house['總價'][i].replace(',', ''))/10000) + ' 萬' + '\n總面積: ' + house['總面積'][i] + '(坪)\n\n'
-    # return text
+    result = sorted(records.items(), key=lambda x:x[1], reverse=True)[:6]
+    return display_message(result)
