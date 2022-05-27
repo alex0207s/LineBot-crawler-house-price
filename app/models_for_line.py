@@ -1,5 +1,5 @@
 from app import line_bot_api, handler
-from crawler import * 
+from crawler import get_url
 
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
  
