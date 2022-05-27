@@ -15,13 +15,28 @@ import requests
 def get_chrom():
     d = DesiredCapabilities.CHROME
     d['goog:loggingPrefs'] = {'performance': 'ALL'}
+
     opt = webdriver.ChromeOptions()
     opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     opt.add_argument("--headless")
     opt.add_argument("--disable-dev-shm-usage")
     opt.add_argument("--no-sandbox")
     opt.add_argument('--disable-blink-features=AutomationControlled')
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
+
+    return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
+
+def get_search_url():
+    # d = DesiredCapabilities.CHROME
+    # d['goog:loggingPrefs'] = {'performance': 'ALL'}
+    
+    # opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # # opt.add_argument("--headless")
+    # # opt.add_argument("--disable-dev-shm-usage")
+    # # opt.add_argument("--no-sandbox")
+    
+    # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
+    # driver.get('https://lvr.land.moi.gov.tw/')
+    driver = get_chrom()
     driver.get('https://lvr.land.moi.gov.tw/')
   
     
@@ -66,7 +81,7 @@ def get_chrom():
 
 
 def request_house_price():
-    url = get_chrom()
+    url = get_search_url()
     # if url == 'fail':
     #     text = '網路壅塞，請重新嘗試!'
     #     print(text)
