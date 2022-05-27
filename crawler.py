@@ -1,4 +1,5 @@
 from lib2to3.pgen2 import driver
+from requests import request
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -6,7 +7,7 @@ from time import sleep
 
 import os
 import json
-# import requests
+import requests
 
 def get_chrome():
     # chrome setting
@@ -65,3 +66,7 @@ def get_url_from_connection_log():
                         print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
                         # driver.close()
                         return json.loads(tmp)['message']['params'].get('request').get('url')
+
+def get_house_pirce_data():
+    url = get_url_from_connection_log()
+    return requests.get(url).json()
