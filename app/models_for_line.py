@@ -34,7 +34,7 @@ def get_chrom():
         # 選縣市
         select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
         select_city.select_by_value('M')
-        sleep(2)
+        sleep(3)
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
@@ -42,6 +42,7 @@ def get_chrom():
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
+        sleep(3)
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_link_text('搜尋').click()
         
