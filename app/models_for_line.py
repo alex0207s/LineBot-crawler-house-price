@@ -34,7 +34,7 @@ def get_chrom():
         # 選縣市
         select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
         select_city.select_by_value('M')
-        sleep(1)
+        sleep(2)
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
@@ -47,7 +47,7 @@ def get_chrom():
         
     #     sleep(3)
         request_log = driver.get_log('performance')#[1320::]
-        print(len(request_log))
+        print('len', len(request_log))
         for i in range(len(request_log)):
             if request_log[i]['level'] == 'INFO':
                 tmp = request_log[i]['message']
