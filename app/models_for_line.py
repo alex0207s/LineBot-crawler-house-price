@@ -26,7 +26,7 @@ def get_chrom():
 
     driver.get('https://lvr.land.moi.gov.tw/')
     # return 'success'
-# sleep(3)
+    sleep(3)    
 
     try :
         driver._switch_to.frame(0)
@@ -38,7 +38,7 @@ def get_chrom():
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
-        
+        sleep(3)
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
