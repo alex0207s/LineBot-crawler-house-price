@@ -18,9 +18,9 @@ def get_chrom():
     d['goog:loggingPrefs'] = {'performance': 'ALL'}
     opt = webdriver.ChromeOptions()
     opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # opt.add_argument("--headless")
-    # opt.add_argument("--disable-dev-shm-usage")
-    # opt.add_argument("--no-sandbox")
+    opt.add_argument("--headless")
+    opt.add_argument("--disable-dev-shm-usage")
+    opt.add_argument("--no-sandbox")
     opt.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
@@ -46,7 +46,7 @@ def get_chrom():
         driver.find_element_by_link_text('搜尋').click()
         
     #     sleep(3)
-        request_log = driver.get_log('performance')[1320::]
+        request_log = driver.get_log('performance')#[1320::]
         print(len(request_log))
         for i in range(len(request_log)):
             if request_log[i]['level'] == 'INFO':
