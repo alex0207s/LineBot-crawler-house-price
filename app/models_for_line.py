@@ -57,7 +57,7 @@ def get_chrom():
                         if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
                             print(json.loads(tmp)['message']['params'].get('request').get('url'))
         print('success')
-        driver.close()
+        # driver.close()
         return json.loads(tmp)['message']['params'].get('request').get('url')
         
     except Exception as e:
