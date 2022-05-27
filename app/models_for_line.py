@@ -26,36 +26,15 @@ def get_chrom():
     return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
 def get_search_url():
-    # d = DesiredCapabilities.CHROME
-    # d['goog:loggingPrefs'] = {'performance': 'ALL'}
-    
-    # opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # # opt.add_argument("--headless")
-    # # opt.add_argument("--disable-dev-shm-usage")
-    # # opt.add_argument("--no-sandbox")
-    
-    # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
-    # driver.get('https://lvr.land.moi.gov.tw/')
     driver = get_chrom()
     driver.get('https://lvr.land.moi.gov.tw/')
   
     
     try :
-        sleep(1)    
-        driver._switch_to.frame(0)
-        
-        # 選縣市
-        select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
-        select_city.select_by_value('M')
         sleep(1)
-        # 選鄉鎮
-        select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
-        select_town.select_by_value('M03')
-        sleep(1)
-        
-        # 取消勾選房地
+        driver.execute_script("document.getElementById('l_city').value = 'M'")
+        driver.execute_script("document.getElementById('l_town').value = 'M03'")
         driver.execute_script("document.getElementById('customCheck1').click()")
-        # 勾選土地
         driver.execute_script("document.getElementById('customCheck2').click()")
         driver.find_element_by_link_text('搜尋').click()
 
