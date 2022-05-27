@@ -1,5 +1,5 @@
 from lib2to3.pgen2 import driver
-from requests import request
+# from requests import request
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
