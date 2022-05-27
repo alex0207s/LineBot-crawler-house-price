@@ -3,7 +3,7 @@ from flask import request, abort
 from linebot.exceptions import InvalidSignatureError
 
 # 接收 LINE 的資訊
-@app.route("/callback", methods=['POST', 'GET'])
+@app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
 
