@@ -36,14 +36,18 @@ def get_chrom():
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
-        # sleep(1)
+        sleep(1)
         # 取消勾選房地
-        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
-        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
+        checkbox1 = driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]")
+        sleep(1)
+        checkbox1.click()
+        sleep(1)
+        cheeckbox2 = driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]")
+        sleep(1)
+        cheeckbox2.click()
         # 勾選土地
         # sleep(1)
-        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
-        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
+        
         driver.find_element_by_link_text('搜尋').click()
         
     #     sleep(3)
