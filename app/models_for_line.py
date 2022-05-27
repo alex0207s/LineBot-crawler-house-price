@@ -42,7 +42,7 @@ def get_chrom():
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
-        sleep(3)
+        # sleep(3)
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_link_text('搜尋').click()
         
