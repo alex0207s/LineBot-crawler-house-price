@@ -3,7 +3,7 @@ from crawler import get_house_pirce_data
 from handle_house_price_data import handle_house_price_data
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
  
-import requests
+# import requests
 
 def request_house_price():
     context = get_house_pirce_data()
