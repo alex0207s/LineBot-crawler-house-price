@@ -24,7 +24,7 @@ def get_chrom():
 
     driver.get('https://lvr.land.moi.gov.tw/')
     # return 'success'
-    sleep(1)    
+    # sleep(1)    
 
     try :
         driver._switch_to.frame(0)
@@ -36,11 +36,11 @@ def get_chrom():
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
-        sleep(1)
+        # sleep(1)
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
-        sleep(1)
+        # sleep(1)
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_link_text('搜尋').click()
         
@@ -55,10 +55,11 @@ def get_chrom():
                     if json.loads(tmp)['message']['params'].get('request').get('url') != None:
                         if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
                             print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
-                            # return json.loads(tmp)['message']['params'].get('request').get('url')
-        print('success')
+                            driver.close()
+                            return json.loads(tmp)['message']['params'].get('request').get('url')
+        # print('success')
     
-        driver.close()
+        # driver.close()
         # return json.loads(tmp)['message']['params'].get('request').get('url')
         
     except Exception as e:
