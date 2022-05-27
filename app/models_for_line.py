@@ -25,44 +25,44 @@ def get_chrom():
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
     driver.get('https://lvr.land.moi.gov.tw/')
-    return 'success'
+    # return 'success'
 # sleep(3)
 
-    # try :
-    #     driver._switch_to.frame(0)
+    try :
+        driver._switch_to.frame(0)
         
-    #     # 選縣市
-    #     select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
-    #     select_city.select_by_value('M')
-    #     sleep(1)
-    #     # 選鄉鎮
-    #     select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
-    #     select_town.select_by_value('M03')
+        # 選縣市
+        select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
+        select_city.select_by_value('M')
+        sleep(1)
+        # 選鄉鎮
+        select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
+        select_town.select_by_value('M03')
         
-    #     # 取消勾選房地
-    #     driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
-    #     # 勾選土地
-    #     driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
-    #     driver.find_element_by_link_text('搜尋').click()
+        # 取消勾選房地
+        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
+        # 勾選土地
+        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
+        driver.find_element_by_link_text('搜尋').click()
         
-    # #     sleep(3)
-    #     request_log = driver.get_log('performance')[1320::]
-    #     print(len(request_log))
-    #     for i in range(len(request_log)):
-    #         if request_log[i]['level'] == 'INFO':
-    #             tmp = request_log[i]['message']
-    #             if json.loads(tmp)['message']['params'].get('request') != None:
-    # #                 print(json.loads(tmp)['message']['params'].get('request'))
-    #                 if json.loads(tmp)['message']['params'].get('request').get('url') != None:
-    #                     if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
-    #                         print(json.loads(tmp)['message']['params'].get('request').get('url'))
-    #     print('success')
-    #     driver.close()
-        # return json.loads(tmp)['message']['params'].get('request').get('url')
+    #     sleep(3)
+        request_log = driver.get_log('performance')[1320::]
+        print(len(request_log))
+        for i in range(len(request_log)):
+            if request_log[i]['level'] == 'INFO':
+                tmp = request_log[i]['message']
+                if json.loads(tmp)['message']['params'].get('request') != None:
+    #                 print(json.loads(tmp)['message']['params'].get('request'))
+                    if json.loads(tmp)['message']['params'].get('request').get('url') != None:
+                        if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
+                            print(json.loads(tmp)['message']['params'].get('request').get('url'))
+        print('success')
+        driver.close()
+        return json.loads(tmp)['message']['params'].get('request').get('url')
         
-    # except Exception as e:
-    #     print(e)
-    #     driver.close()
+    except Exception as e:
+        print(e)
+        driver.close()
 
 
 # def request_house_price():
