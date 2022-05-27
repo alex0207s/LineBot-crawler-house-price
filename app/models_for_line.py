@@ -55,6 +55,7 @@ def get_chrom():
     #                 print(json.loads(tmp)['message']['params'].get('request'))
                     if json.loads(tmp)['message']['params'].get('request').get('url') != None:
                         if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
+                            print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
                             return json.loads(tmp)['message']['params'].get('request').get('url')
         # print('success')
         # driver.close()
