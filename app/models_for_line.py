@@ -68,10 +68,12 @@ def get_chrom():
 def request_house_price():
     url = get_chrom()
     if url == 'fail':
-        return '網路壅塞，請重新嘗試!'
+        text = '網路壅塞，請重新嘗試!'
+        print(text)
+
     res = requests.get(url)
     context = res.json()
-    
+    print(context)
     text = ""
     for i in range(5):
         text += str(i)+". " + context[i]['a'] + "\t" + context[i]['tp'] + "\n"
