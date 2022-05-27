@@ -24,7 +24,7 @@ def get_chrom():
 
     driver.get('https://lvr.land.moi.gov.tw/')
     # return 'success'
-    # sleep(1)    
+    sleep(1)    
 
     try :
         driver._switch_to.frame(0)
@@ -39,8 +39,10 @@ def get_chrom():
         # sleep(1)
         # 取消勾選房地
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
+        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[1]").click()
         # 勾選土地
         # sleep(1)
+        driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_xpath("//*[@id='main_form']/div/div[3]/div[2]").click()
         driver.find_element_by_link_text('搜尋').click()
         
