@@ -25,7 +25,7 @@ def handle_house_price_data(raw_data):
         #     house["地址"].append(deal['a'][start_index::])
         #     house["總價"].append(deal['tp'])
     
-    print(records[::6])
+    # print(records[::6])
     sorted(records.items(), key=lambda x:x[1], reverse=True)
     return display_message(records)
 
