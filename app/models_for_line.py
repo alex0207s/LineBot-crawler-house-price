@@ -40,19 +40,19 @@ def get_search_url():
         # 選鄉鎮
         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
         select_town.select_by_value('M03')
-        sleep(1)
+        # sleep(1)
         
         # 取消勾選房地
         driver.execute_script("document.getElementById('customCheck1').click()")
         # 勾選土地
         driver.execute_script("document.getElementById('customCheck2').click()")
         # 點選搜尋鍵
-        sleep(1)
+        # sleep(1)
         driver.find_element_by_link_text('搜尋').click()
 
-        sleep(1)
+        sleep(3)
         request_log = driver.get_log('performance')[1000::]
-        print('len', len(request_log))
+        # print('len', len(request_log))
         for i in range(len(request_log)):
             if request_log[i]['level'] == 'INFO':
                 tmp = request_log[i]['message']
