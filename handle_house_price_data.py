@@ -18,5 +18,5 @@ def handle_house_price_data(raw_data):
             start_index = deal['a'].find('#') + 1 
             records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
 
-    result = sorted(records.items(), key=lambda x:x[1], reverse=True)[:6]
+    result = sorted(records.items(), key=lambda x:x[1], reverse=True)[:5]
     return display_message(result)
