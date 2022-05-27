@@ -15,6 +15,6 @@ def handle_house_price_data(raw_data):
             house["總價"].append(deal['tp'])
 
     text = ""
-    for i in range(5):
-        text += str(i)+". " + raw_data[i]['a'] + "\t" + raw_data[i]['tp'] + "\n"
+    for i in range(1,6):
+        text += house['交易日期'] + ' ' + house['地址'] + ' ' + house['總價'] + house['總面積'] + '\n'
     return text
