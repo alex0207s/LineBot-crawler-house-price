@@ -5,7 +5,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 def request_house_price():
     context = get_house_pirce_data()
-    return handle_house_price_data(context)
+    # return handle_house_price_data(context)
+    return context
 
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):

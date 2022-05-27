@@ -68,5 +68,10 @@ def get_url_from_connection_log():
                         return json.loads(tmp)['message']['params'].get('request').get('url')
 
 def get_house_pirce_data():
-    url = get_url_from_connection_log()
-    return requests.get(url).json()
+    # url = get_url_from_connection_log()
+    # return requests.get(url).json()
+    with open('/app/records_json.json') as f:
+        data = json.load(f)
+
+    print(data)
+    return data
