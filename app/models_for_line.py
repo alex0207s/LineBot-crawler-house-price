@@ -25,7 +25,7 @@ def get_chrom():
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
     driver.get('https://lvr.land.moi.gov.tw/')
-    return 'gg'
+    return 'success'
 # sleep(3)
 
     # try :
