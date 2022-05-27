@@ -1,4 +1,5 @@
 from app import line_bot_api, handler
+from crawler import * 
 
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
  
@@ -12,67 +13,68 @@ import os
 import json
 import requests
 
-def get_chrom():
-    d = DesiredCapabilities.CHROME
-    d['goog:loggingPrefs'] = {'performance': 'ALL'}
+# def get_chrom():
+#     d = DesiredCapabilities.CHROME
+#     d['goog:loggingPrefs'] = {'performance': 'ALL'}
 
-    opt = webdriver.ChromeOptions()
-    opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    opt.add_argument("--headless")
-    opt.add_argument("--disable-dev-shm-usage")
-    opt.add_argument("--no-sandbox")
-    opt.add_argument('--disable-blink-features=AutomationControlled')
+#     opt = webdriver.ChromeOptions()
+#     opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+#     opt.add_argument("--headless")
+#     opt.add_argument("--disable-dev-shm-usage")
+#     opt.add_argument("--no-sandbox")
+#     opt.add_argument('--disable-blink-features=AutomationControlled')
 
-    return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
+#     return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
-def get_search_url():
-    driver = get_chrom()
-    driver.get('https://lvr.land.moi.gov.tw/')
+# def get_search_url():
+#     driver = get_chrom()
+#     driver.get('https://lvr.land.moi.gov.tw/')
     
-    try :
-        sleep(1)    
-        driver._switch_to.frame(0)
+#     try :
+#         sleep(1)    
+#         driver._switch_to.frame(0)
         
-        # 選縣市
-        select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
-        select_city.select_by_value('M')
-        sleep(1)
-        # 選鄉鎮
-        select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
-        select_town.select_by_value('M03')
-        # sleep(1)
+#         # 選縣市
+#         select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
+#         select_city.select_by_value('M')
+#         sleep(1)
+#         # 選鄉鎮
+#         select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
+#         select_town.select_by_value('M03')
+#         # sleep(1)
         
-        # 取消勾選房地
-        driver.execute_script("document.getElementById('customCheck1').click()")
-        # 勾選土地
-        driver.execute_script("document.getElementById('customCheck2').click()")
-        # 點選搜尋鍵
-        # sleep(1)
-        driver.find_element_by_link_text('搜尋').click()
+#         # 取消勾選房地
+#         driver.execute_script("document.getElementById('customCheck1').click()")
+#         # 勾選土地
+#         driver.execute_script("document.getElementById('customCheck2').click()")
+#         # 點選搜尋鍵
+#         # sleep(1)
+#         driver.find_element_by_link_text('搜尋').click()
 
-        sleep(3)
-        request_log = driver.get_log('performance')[1000::]
-        # print('len', len(request_log))
-        for i in range(len(request_log)):
-            if request_log[i]['level'] == 'INFO':
-                tmp = request_log[i]['message']
-                if json.loads(tmp)['message']['params'].get('request') != None:
-    #                 print(json.loads(tmp)['message']['params'].get('request'))
-                    if json.loads(tmp)['message']['params'].get('request').get('url') != None:
-                        if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
-                            print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
-                            driver.close()
-                            return json.loads(tmp)['message']['params'].get('request').get('url')
+#         sleep(3)
+#         request_log = driver.get_log('performance')[1000::]
+#         # print('len', len(request_log))
+#         for i in range(len(request_log)):
+#             if request_log[i]['level'] == 'INFO':
+#                 tmp = request_log[i]['message']
+#                 if json.loads(tmp)['message']['params'].get('request') != None:
+#     #                 print(json.loads(tmp)['message']['params'].get('request'))
+#                     if json.loads(tmp)['message']['params'].get('request').get('url') != None:
+#                         if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
+#                             print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
+#                             driver.close()
+#                             return json.loads(tmp)['message']['params'].get('request').get('url')
 
-        return 'fail'
+#         return 'fail'
         
-    except Exception as e:
-        print(e)
-        driver.close()
+    # except Exception as e:
+    #     print(e)
+    #     driver.close()
 
 
 def request_house_price():
-    url = get_search_url()
+    # url = get_search_url()
+    url = get_url()
     # if url == 'fail':
     #     text = '網路壅塞，請重新嘗試!'
     #     print(text)
