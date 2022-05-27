@@ -6,8 +6,7 @@ from time import sleep
 
 import os
 import json
-import requests
-from sympy import re
+# import requests
 
 def get_chrome():
     # chrome setting
