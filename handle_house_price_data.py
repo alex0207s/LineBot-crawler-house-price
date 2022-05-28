@@ -17,12 +17,9 @@ def load_old_data():
     with open('/app/old_data.json', encoding="utf8") as f:
         old_data = json.load(f)
 
-    # print(old_data)
-    print('成功: load_data')
+    print('成功: load_old_data')
     return old_data
 
-# def is_new_deal(record):
-#     return record
 
 def handle_house_price_data():
     new_data = get_house_pirce_raw_data_from_url()
