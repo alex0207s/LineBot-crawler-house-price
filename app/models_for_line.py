@@ -1,5 +1,5 @@
 from app import line_bot_api, handler
-from crawler import get_house_pirce_data
+# from crawler import get_house_pirce_data
 from handle_house_price_data import handle_house_price_data
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
