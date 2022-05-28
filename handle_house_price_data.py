@@ -27,6 +27,7 @@ def handle_house_price_data():
 
     new_records = {}
 
+    cnt = 0
     for i in range(len(new_data)):
         deal = new_data[i] # 這是一個 dict
 
@@ -34,9 +35,10 @@ def handle_house_price_data():
             # 比對該筆資料是否是新登錄的交易
             if deal not in old_data:
                 print('一筆新資料')
+                cnt += 1
                 start_index = deal['a'].find('#') + 1 
                 new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
 
     result = sorted(new_records.items(), key=lambda x:x[1], reverse=True)[:5]
-    print('成功: handle_hosue_price_data')
+    print(cnt ,' 成功: handle_hosue_price_data')
     return display_message(result)
