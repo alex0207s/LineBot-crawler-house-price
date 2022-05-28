@@ -7,9 +7,10 @@ target_addresses = [
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
 def display_message(records):
+
     sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
-    text = ''
+    text = '找到新的　' + len(records) + ' 筆資料\n'
     for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
         date = record[1][0]
@@ -41,7 +42,7 @@ def load_old_data(file_path):
 #     return records       
 
 
-def handle_house_price_data():
+def get_house_price_data():
     new_data = get_house_pirce_raw_data_from_url()
     old_data = load_old_data('/app/old_data.json')
 
@@ -56,4 +57,7 @@ def handle_house_price_data():
                 new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
 
     print('新增 ', len(new_records), ' 筆交易紀錄!')
-    return display_message(new_records)
+    if len(new_records) == 0:
+        return ''
+    else:
+        return display_message(new_records)
