@@ -50,7 +50,7 @@ def handle_house_price_data():
     cnt = 0
     for deal in new_data:
         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
-            if old_data.get(deal['e']+deal['a']) == None or old_data.get(deal['a'])[0] != deal['e']:
+            if old_data.get(deal['e'] + deal['a']) == None or old_data.get(deal['e'] + deal['a'])[0] != deal['e']:
                 # 表示這是沒出現在交易紀錄中的地段 或是 這個地段交易過但交易日期不同 
                 cnt += 1
                 new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
