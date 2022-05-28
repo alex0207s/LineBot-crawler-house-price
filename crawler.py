@@ -51,23 +51,18 @@ def get_url_from_connection_log():
     request_log = get_search_request_log()
 
     for i in range(len(request_log)):
+        target_string = 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/'
+
         if request_log[i]['level'] == 'INFO':
             tmp = request_log[i]['message']
             if json.loads(tmp)['message']['params'].get('request') != None:
                 if json.loads(tmp)['message']['params'].get('request').get('url') != None:
-                    if 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/' in json.loads(tmp)['message']['params'].get('request').get('url'):
+                    if target_string in json.loads(tmp)['message']['params'].get('request').get('url'):
                         print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
-                        # driver.close()
                         return json.loads(tmp)['message']['params'].get('request').get('url')
 
-def get_house_pirce_data():
+def get_house_pirce_raw_data_from_url():
     url = get_url_from_connection_log()
+    raw_data = requests.get(url).json()
     
-    with open('/app/test.json', 'w') as f:
-        json.dump(requests.get(url).json(), f)
-
-    with open('/app/test.json') as f:
-        data = json.load(f)
-
-    print(data)
-    return data
+    return raw_data

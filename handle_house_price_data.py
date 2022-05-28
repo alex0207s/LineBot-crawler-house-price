@@ -1,6 +1,8 @@
+from crawler import get_house_pirce_raw_data_from_url
+
 import json
 
-target_address = [
+target_addresses = [
     '北投段', '北投堡段', '北投埔段', '頂茄荖段', '光華段', '青宅段', '新埔段', '新興段', '新光段',
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
@@ -11,20 +13,30 @@ def display_message(records):
 
     return text
 
-# def load_json_file():
-#     with open('/records_json.json') as f:
-#         data = json.load(f)
+def load_old_data():
+    with open('/old_data.json') as f:
+        old_data = json.load(f)
 
-#     print(data)
+    # print(old_data)
+    return old_data
 
-def handle_house_price_data(raw_data):
-    records = {}
+# def is_new_deal(record):
+#     return record
 
-    for i in range(len(raw_data)):
-        deal = raw_data[i]
-        if deal['a'][:3] in target_address or deal['a'][:4] in target_address:
-            start_index = deal['a'].find('#') + 1 
-            records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
+def handle_house_price_data():
+    new_data = get_house_pirce_raw_data_from_url()
+    old_data = load_old_data()
 
-    result = sorted(records.items(), key=lambda x:x[1], reverse=True)[:5]
+    new_records = {}
+
+    for i in range(len(new_data)):
+        deal = new_data[i] # 這是一個 dict
+
+        if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
+            # 比對該筆資料是否是新登錄的交易
+            if deal not in old_data:
+                start_index = deal['a'].find('#') + 1 
+                new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
+
+    result = sorted(new_records.items(), key=lambda x:x[1], reverse=True)[:5]
     return display_message(result)
