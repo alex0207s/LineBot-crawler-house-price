@@ -24,6 +24,7 @@ def get_search_request_log():
     driver.get('https://lvr.land.moi.gov.tw/')
     driver._switch_to.frame(0)
     
+    sleep(1)
     # 選縣市
     select_city = Select(driver.find_element_by_xpath("//*[@id='p_city']"))
     select_city.select_by_value('M')
@@ -64,5 +65,6 @@ def get_url_from_connection_log():
 def get_house_pirce_raw_data_from_url():
     url = get_url_from_connection_log()
     raw_data = requests.get(url).json()
-    
+
+    print('成功: get_house_price_raw_data_from_url')
     return raw_data

@@ -14,10 +14,11 @@ def display_message(records):
     return text
 
 def load_old_data():
-    with open('/old_data.json') as f:
+    with open('/app/old_data.json') as f:
         old_data = json.load(f)
 
     # print(old_data)
+    print('成功: load_data')
     return old_data
 
 # def is_new_deal(record):
@@ -39,4 +40,5 @@ def handle_house_price_data():
                 new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
 
     result = sorted(new_records.items(), key=lambda x:x[1], reverse=True)[:5]
+    print('成功: handle_hosue_price_data')
     return display_message(result)
