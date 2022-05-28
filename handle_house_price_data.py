@@ -1,3 +1,4 @@
+from regex import E
 from crawler import get_house_pirce_raw_data_from_url
 
 import json
@@ -14,7 +15,7 @@ def display_message(records):
     return text
 
 def load_old_data():
-    with open('/app/old_data.json') as f:
+    with open('/app/old_data.json', encoding="utf8") as f:
         old_data = json.load(f)
 
     # print(old_data)
