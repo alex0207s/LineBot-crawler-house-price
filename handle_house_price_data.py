@@ -25,7 +25,7 @@ def handle_house_price_data():
     new_data = get_house_pirce_raw_data_from_url()
     old_data = load_old_data()
     print('type old data', type(old_data))
-    print(old_data)
+    # print(old_data)
     new_records = {}
 
     cnt = 0
