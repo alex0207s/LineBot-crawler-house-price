@@ -24,20 +24,20 @@ def load_old_data():
 def handle_house_price_data():
     new_data = get_house_pirce_raw_data_from_url()
     old_data = load_old_data()
-    print('type old data', type(old_data))
+    # print('type old data', type(old_data)) # list
     # print(old_data)
     new_records = {}
 
     cnt = 0
     for i in range(len(new_data)):
         deal = new_data[i] # 這是一個 dict
-        print(type(deal))
+        # print(type(deal))
         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
             # 比對該筆資料是否是新登錄的交易
-            if {"AA11": "住", "AA12": "", "a": "中興段00680000地號#中興段68地號", "b": "", "bn": "", "bs": "", "city": "M", "commid": "", "cp": "", "e": "110/05/19", "el": "無", "es": "", "f": "", "fi": "0", "g": "", "id": "507", "j": "1", "k": "0", "l": "0", "lat": 23.968084085594217, "lon": 120.68208760119431, "m": "無", "mark": "", "msg": "總價/總面積", "note": "", "p": "101,864", "pimg": "bt_A.png", "pu": "", "punit": "1", "r": 10, "reid": "", "s": "26.02", "sq": "TEeNgLxSCN79UkSMenCGTGfuvc+Gt7P/GM2c+1hN+zE=", "t": "土地", "tp": "2,650,000", "tunit": "1", "twn": "M03", "type": "Biz", "unit": "2", "v": ""} not in old_data:
-                print('錯誤!') 
-            if deal in old_data:
-                # print('一筆新資料: ', deal)
+            # if {"AA11": "住", "AA12": "", "a": "中興段00680000地號#中興段68地號", "b": "", "bn": "", "bs": "", "city": "M", "commid": "", "cp": "", "e": "110/05/19", "el": "無", "es": "", "f": "", "fi": "0", "g": "", "id": "507", "j": "1", "k": "0", "l": "0", "lat": 23.968084085594217, "lon": 120.68208760119431, "m": "無", "mark": "", "msg": "總價/總面積", "note": "", "p": "101,864", "pimg": "bt_A.png", "pu": "", "punit": "1", "r": 10, "reid": "", "s": "26.02", "sq": "TEeNgLxSCN79UkSMenCGTGfuvc+Gt7P/GM2c+1hN+zE=", "t": "土地", "tp": "2,650,000", "tunit": "1", "twn": "M03", "type": "Biz", "unit": "2", "v": ""} not in old_data:
+            #     print('錯誤!') 
+            if deal not in old_data:
+                print('一筆新資料: ', deal)
                 cnt += 1
                 start_index = deal['a'].find('#') + 1 
                 new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
