@@ -44,7 +44,7 @@ def get_search_log():
     # 點選搜尋鍵
     driver.find_element_by_link_text('搜尋').click()
 
-    sleep(3)
+    sleep(1)
     request_log = driver.get_log('performance')[1000::]
     driver.close()
     return request_log
