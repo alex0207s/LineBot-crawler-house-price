@@ -1,4 +1,3 @@
-from regex import E
 from crawler import get_house_pirce_raw_data_from_url
 
 import json
@@ -10,7 +9,7 @@ target_addresses = [
 def display_message(records):
     text = ''
     for index, record in enumerate(records):
-        text += str(index+1) + '. \n交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '\n\n'   
+        text += str(index+1) + '. \n交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '(坪)\n\n'   
 
     return text
 
