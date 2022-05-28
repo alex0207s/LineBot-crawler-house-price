@@ -10,7 +10,7 @@ def display_message(records):
 
     sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
-    text = '找到新的　' + len(records) + ' 筆資料\n'
+    text = '找到新的　' + str(len(records)) + ' 筆資料\n'
     for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
         date = record[1][0]
@@ -60,8 +60,10 @@ def get_house_price_data():
                 cnt += 1
                 new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
 
+
     print('新增 ', len(new_records), ' 筆交易紀錄!')
     if len(new_records) == 0:
         return ''
     else:
+
         return display_message(new_records)
