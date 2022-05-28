@@ -10,7 +10,7 @@ def display_message(records):
 
     sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
-    text = '找到新的　' + str(len(records)) + ' 筆資料\n'
+    text = '找到新的 ' + str(len(records)) + ' 筆資料\n'
     for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
         date = record[1][0]
@@ -47,13 +47,13 @@ def load_old_data(file_path):
 
 
 def get_house_price_data():
-    new_data = get_house_pirce_raw_data_from_url()
+    raw_data = get_house_pirce_raw_data_from_url()
     old_data = load_old_data('/app/old_data.json')
 
     new_records = {}
 
     cnt = 0
-    for deal in new_data:
+    for deal in raw_data:
         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
             if old_data.get(deal['e'] + deal['a']) == None or old_data.get(deal['e'] + deal['a'])[0] != deal['e']:
                 # 表示這是沒出現在交易紀錄中的地段 或是 這個地段交易過但交易日期不同 
@@ -65,5 +65,8 @@ def get_house_price_data():
     if len(new_records) == 0:
         return ''
     else:
+        new_data = {**old_data, **new_records}
 
+        save_new_data('/app/old_data.json', new_data)
+        load_old_data('/app/old_data.json')
         return display_message(new_records)
