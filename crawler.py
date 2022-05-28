@@ -65,6 +65,5 @@ def get_url_from_connection_log():
 def get_house_pirce_raw_data_from_url():
     url = get_url_from_connection_log()
     raw_data = requests.get(url).json() # 這是一個 list
-
-    print('成功: get_house_price_raw_data_from_url')
+    print('成功抓到房價資料')
     return raw_data

@@ -7,43 +7,53 @@ target_addresses = [
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
 def display_message(records):
+    records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
+
     text = ''
     for index, record in enumerate(records):
-        text += str(index+1) + '. \n交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '(坪)\n\n'   
+        address = record[0].split('#')[1]
+        date = record[1][0]
+        area = record[1][1]
+        price = str(int(record[1][2].replace(',', ''))/10000)
+
+        text += str(index+1) + '. \n交易日期: ' + date + '\n地址: ' + address + '\n總價: ' + price + ' 萬\n總面積: ' + area + '(坪)\n\n'   
         if len(text) >= 250: break
+        
     return text
 
-def load_old_data():
-    with open('/app/old_data.json', encoding="utf8") as f:
+def load_old_data(file_path):
+    with open(file_path, encoding="utf8") as f:
         old_data = json.load(f)
 
-    print('成功: load_old_data')
+    print('成功載入舊資料，總共有 ', len(old_data), ' 筆資料!')
     return old_data
+
+# def handle_house_price_raw_data():
+#     raw_data = get_house_pirce_raw_data_from_url()
+
+#     records = {}
+#     for deal in raw_data:
+#         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
+#             records[(deal['e'], deal['a'])] = [deal['s'], deal['tp']]
+
+#     print('總共有 ', len(records), ' 筆資料')
+#     print('第一筆資料為: ', records[0])
+#     return records       
 
 
 def handle_house_price_data():
     new_data = get_house_pirce_raw_data_from_url()
-    old_data = load_old_data()
-    # print('type old data', type(old_data)) # list
-    # print(old_data)
+    old_data = load_old_data('/app/old_data.json')
+
     new_records = {}
 
     cnt = 0
-    for i in range(len(new_data)):
-        deal = new_data[i] # 這是一個 dict
-        # print(type(deal))
+    for deal in new_data:
         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
-            # 比對該筆資料是否是新登錄的交易
-            if {'AA11': '住', 'AA12': '', 'a': '中興段00680000地號#中興段68地號', 'b': '', 'bn': '', 'bs': '', 'city': 'M', 'commid': '', 'cp': '', 'e': '110/05/19', 'el': '無', 'es': '', 'f': '', 'fi': '0', 'g': '', 'id': '507', 'j': '1', 'k': '0', 'l': '0', 'lat': 23.968084085594217, 'lon': 120.68208760119431, 'm': '無', 'mark': '', 'msg': '總價/總面積', 'note': '', 'p': '101,864', 'pimg': 'bt_A.png', 'pu': '', 'punit': '1', 'r': 10, 'reid': '', 's': '26.02', 'sq': 'xlITTw6HRxRNVlIJ1AP5ir2T4M+DwCOTKxl3v/Pat5Q=', 't': '土地', 'tp': '2,650,000', 'tunit': '1', 'twn': 'M03', 'type': 'Biz', 'unit': '2', 'v': ''} not in old_data:
-                print('錯誤!') 
-            if {"AA11": "住", "AA12": "", "a": "中興段00680000地號#中興段68地號", "b": "", "bn": "", "bs": "", "city": "M", "commid": "", "cp": "", "e": "110/05/19", "el": "無", "es": "", "f": "", "fi": "0", "g": "", "id": "507", "j": "1", "k": "0", "l": "0", "lat": 23.968084085594217, "lon": 120.68208760119431, "m": "無", "mark": "", "msg": "總價/總面積", "note": "", "p": "101,864", "pimg": "bt_A.png", "pu": "", "punit": "1", "r": 10, "reid": "", "s": "26.02", "sq": "TEeNgLxSCN79UkSMenCGTGfuvc+Gt7P/GM2c+1hN+zE=", "t": "土地", "tp": "2,650,000", "tunit": "1", "twn": "M03", "type": "Biz", "unit": "2", "v": ""} != {'AA11': '住', 'AA12': '', 'a': '中興段00680000地號#中興段68地號', 'b': '', 'bn': '', 'bs': '', 'city': 'M', 'commid': '', 'cp': '', 'e': '110/05/19', 'el': '無', 'es': '', 'f': '', 'fi': '0', 'g': '', 'id': '507', 'j': '1', 'k': '0', 'l': '0', 'lat': 23.968084085594217, 'lon': 120.68208760119431, 'm': '無', 'mark': '', 'msg': '總價/總面積', 'note': '', 'p': '101,864', 'pimg': 'bt_A.png', 'pu': '', 'punit': '1', 'r': 10, 'reid': '', 's': '26.02', 'sq': 'xlITTw6HRxRNVlIJ1AP5ir2T4M+DwCOTKxl3v/Pat5Q=', 't': '土地', 'tp': '2,650,000', 'tunit': '1', 'twn': 'M03', 'type': 'Biz', 'unit': '2', 'v': ''}:
-                print('刷新三關!')
-            if deal not in old_data:
-                print('一筆新資料: ', deal)
+            if old_data.get(deal['a']) == None or old_data.get(deal['a'])[0] != deal['e']:
+                # 表示這是沒出現在交易紀錄中的地段 或是 這個地段交易過但交易日期不同 
                 cnt += 1
-                start_index = deal['a'].find('#') + 1 
-                new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
+                new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
 
-    result = sorted(new_records.items(), key=lambda x:x[1], reverse=True)
-    print(cnt ,' 成功: handle_hosue_price_data')
-    return display_message(result)
+    print('新增 ', len(new_records), ' 筆交易紀錄!')
+    return display_message(new_records)
