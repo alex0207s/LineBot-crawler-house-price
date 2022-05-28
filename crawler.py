@@ -20,9 +20,8 @@ def get_chrome():
     return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
 def get_search_log():
-    driver = get_chrome()get('https://lvr.land.moi.gov.tw/')
+    driver = get_chrome().get('https://lvr.land.moi.gov.tw/')
     # driver.get('https://lvr.land.moi.gov.tw/')
-
 
     sleep(1)    
     driver._switch_to.frame(0)
