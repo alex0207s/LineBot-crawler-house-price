@@ -19,11 +19,9 @@ def get_chrome():
 
     return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
-def get_search_log():
-    driver = get_chrome().get('https://lvr.land.moi.gov.tw/')
-    # driver.get('https://lvr.land.moi.gov.tw/')
-
-    sleep(1)    
+def get_search_request_log():
+    driver = get_chrome()
+    driver.get('https://lvr.land.moi.gov.tw/')
     driver._switch_to.frame(0)
     
     # 選縣市
@@ -50,7 +48,7 @@ def get_search_log():
     return request_log
 
 def get_url_from_connection_log():
-    request_log = get_search_log()
+    request_log = get_search_request_log()
 
     for i in range(len(request_log)):
         if request_log[i]['level'] == 'INFO':
