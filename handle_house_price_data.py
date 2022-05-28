@@ -18,10 +18,6 @@ def display_message(records):
 #     print(data)
 
 def handle_house_price_data(raw_data):
-    # with open('/app/records_json.json') as f:
-    #     data = json.load(f)
-
-    # print(data)
     records = {}
 
     for i in range(len(raw_data)):

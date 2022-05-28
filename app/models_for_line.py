@@ -10,7 +10,7 @@ def request_house_price():
     text = ''
     for index, record in enumerate(result):
         text += str(index+1) + '. \n交易日期: ' + record[1][0] + '\n地址: ' + record[0] + '\n總價: ' + str(int(record[1][2].replace(',', ''))/10000) + ' 萬\n總面積: ' + record[1][1] + '\n\n'   
-        if len(text) >= 100:
+        if len(text) >= 300:
             break
 
     return text

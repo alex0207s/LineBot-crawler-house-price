@@ -1,13 +1,9 @@
-from lib2to3.pgen2 import driver
-# from requests import request
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from time import sleep
 
-import os
-import json
-import requests
+import os, json, requests
 
 def get_chrome():
     # chrome setting
@@ -15,11 +11,11 @@ def get_chrome():
     d['goog:loggingPrefs'] = {'performance': 'ALL'}
 
     opt = webdriver.ChromeOptions()
-    opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     opt.add_argument("--headless")
     opt.add_argument("--disable-dev-shm-usage")
     opt.add_argument("--no-sandbox")
     opt.add_argument('--disable-blink-features=AutomationControlled')
+    opt.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
     return webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=opt, desired_capabilities=d)
 
@@ -68,9 +64,12 @@ def get_url_from_connection_log():
                         return json.loads(tmp)['message']['params'].get('request').get('url')
 
 def get_house_pirce_data():
-    # url = get_url_from_connection_log()
-    # return requests.get(url).json()
-    with open('/app/records_json.json') as f:
+    url = get_url_from_connection_log()
+    
+    with open('/app/test.json', 'w') as f:
+        json.dump(requests.get(url).json(), f)
+
+    with open('/app/test.json') as f:
         data = json.load(f)
 
     print(data)
