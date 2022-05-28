@@ -6,5 +6,4 @@ sched = BlockingScheduler()
 def timed_job():
     print('This job is run every one minute.')
 
-
 sched.start()

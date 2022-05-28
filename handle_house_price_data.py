@@ -67,3 +67,8 @@ def get_house_price_data():
         save_new_data('/app/old_data.json', new_data)
         load_old_data('/app/old_data.json')
         return display_message(new_records)
+
+
+if __name__ == '__main__':
+    print('test')
+    get_house_price_data()
