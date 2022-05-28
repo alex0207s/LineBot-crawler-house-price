@@ -7,10 +7,10 @@ target_addresses = [
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
 def display_message(records):
-    records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
+    sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
     text = ''
-    for index, record in enumerate(records):
+    for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
         date = record[1][0]
         area = record[1][1]
