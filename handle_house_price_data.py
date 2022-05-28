@@ -33,6 +33,7 @@ def handle_house_price_data():
         if deal['a'][:3] in target_addresses or deal['a'][:4] in target_addresses:
             # 比對該筆資料是否是新登錄的交易
             if deal not in old_data:
+                print('一筆新資料')
                 start_index = deal['a'].find('#') + 1 
                 new_records[deal['a'][start_index::]] = [deal['e'], deal['s'], deal['tp']]
 
