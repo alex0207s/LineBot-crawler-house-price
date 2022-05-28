@@ -7,7 +7,6 @@ target_addresses = [
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
 def display_message(records):
-
     sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
     text = '找到新的 ' + str(len(records)) + ' 筆資料\n'
@@ -23,11 +22,11 @@ def display_message(records):
     return text
 
 def save_new_data(file_path, records):
-    with open(file_path, 'w', encoding="utf8") as f:
+    with open(file_path, 'w', encoding='utf8') as f:
         json.dump(records, f, ensure_ascii=False)
 
 def load_old_data(file_path):
-    with open(file_path, encoding="utf8") as f:
+    with open(file_path, encoding='utf8') as f:
         old_data = json.load(f)
 
     print('成功載入舊資料，總共有 ', len(old_data), ' 筆資料!')
@@ -60,13 +59,11 @@ def get_house_price_data():
                 cnt += 1
                 new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
 
-
     print('新增 ', len(new_records), ' 筆交易紀錄!')
     if len(new_records) == 0:
         return ''
     else:
         new_data = {**old_data, **new_records}
-
         save_new_data('/app/old_data.json', new_data)
         load_old_data('/app/old_data.json')
         return display_message(new_records)

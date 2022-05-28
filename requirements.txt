@@ -4,3 +4,4 @@ line-bot-sdk==1.15.0
 requests
 configparser
 selenium
+APScheduler==3.6.1
