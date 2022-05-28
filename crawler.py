@@ -53,7 +53,6 @@ def get_url_from_connection_log():
 
     for i in range(len(request_log)):
         target_string = 'https://lvr.land.moi.gov.tw/SERVICE/QueryPrice/'
-
         if request_log[i]['level'] == 'INFO':
             tmp = request_log[i]['message']
             if json.loads(tmp)['message']['params'].get('request') != None:
@@ -64,6 +63,6 @@ def get_url_from_connection_log():
 
 def get_house_pirce_raw_data_from_url():
     url = get_url_from_connection_log()
-    raw_data = requests.get(url).json() # 這是一個 list
+    raw_data = requests.get(url).json()
     print('成功抓到房價資料')
     return raw_data

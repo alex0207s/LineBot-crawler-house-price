@@ -22,6 +22,10 @@ def display_message(records):
         
     return text
 
+def save_new_data(file_path, records):
+    with open(file_path, 'w', encoding="utf8") as f:
+        json.dump(records, f, ensure_ascii=False)
+
 def load_old_data(file_path):
     with open(file_path, encoding="utf8") as f:
         old_data = json.load(f)
