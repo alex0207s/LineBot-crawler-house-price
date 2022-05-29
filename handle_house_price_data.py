@@ -17,7 +17,7 @@ def display_message(records, show_old = True):
     if show_old:
         text = ''
     else:
-        text = '找到新的 ' + str(len(records)) + ' 筆資料\n'
+        text = '找到 ' + str(len(records)) + ' 筆新的資料\n'
 
     for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
@@ -67,6 +67,11 @@ def get_house_price_data():
 
 if __name__ == '__main__':
     print('成功執行 main 主程式')
-    line_bot_api.push_message(config.get('line-bot', 'userId'), 
-         TextSendMessage(text=get_house_price_data()))
+
+    text = get_house_price_data()
+    if text == '':
+        print('目前尚未抓到新的交易紀錄')
+    else:
+        line_bot_api.push_message(config.get('line-bot', 'userId'), 
+         TextSendMessage(text=text))
 

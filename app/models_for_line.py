@@ -8,8 +8,6 @@ def RequestHousePrice(event):
         if event.message.text == "給我房價":
             old_data = load_old_data('/app/old_data.json')
             text = display_message(old_data)
-            if text == '':
-                text = '目前沒有最新的資料!'
         else:
             text = "目前尚未開發 「" + event.message.text + "」 相關功能！\n敬請期待！"
 
