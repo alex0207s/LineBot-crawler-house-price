@@ -87,5 +87,5 @@ from app import line_bot_api
 if __name__ == '__main__':
     print('成功執行 main 主程式')
     # sendToLine(config.get('line-bot', 'channel_access_token'))
-    line_bot_api.push_message(config.get('line-bot', 'useId'), get_house_price_data())
+    line_bot_api.push_message(config.get('line-bot', 'userId'), get_house_price_data())
 
