@@ -1,4 +1,3 @@
-from matplotlib.pyplot import show
 from crawler import get_house_pirce_raw_data_from_url
 from app import line_bot_api
 from linebot.models import TextSendMessage
