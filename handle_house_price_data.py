@@ -1,3 +1,4 @@
+from matplotlib.pyplot import show
 from crawler import get_house_pirce_raw_data_from_url
 from app import line_bot_api
 from linebot.models import TextSendMessage
@@ -11,10 +12,14 @@ target_addresses = [
     '北投段', '北投堡段', '北投埔段', '頂茄荖段', '光華段', '青宅段', '新埔段', '新興段', '新光段',
     '新豐段', '保安段', '中興段', '上林段', '和平段', '將軍段', '頂園段']
 
-def display_message(records):
+def display_message(records, show_old = True):
     sorted_records = sorted(records.items(), key=lambda x:x[1][0], reverse=True)
 
-    text = '找到新的 ' + str(len(records)) + ' 筆資料\n'
+    if show_old:
+        text = ''
+    else:
+        text = '找到新的 ' + str(len(records)) + ' 筆資料\n'
+
     for index, record in enumerate(sorted_records):
         address = record[0].split('#')[1]
         date = record[1][0]
@@ -58,7 +63,7 @@ def get_house_price_data():
     else:
         new_data = {**old_data, **new_records}
         save_new_data('/app/old_data.json', new_data)
-        return display_message(new_records)
+        return display_message(new_records, False)
 
 
 if __name__ == '__main__':
