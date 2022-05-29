@@ -75,15 +75,15 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 
-def sendToLine(token):
+def sendToLine(lineToken):
     url = "https://notify-api.line.me/api/notify"
     payload = {"message": {get_house_price_data()}}
-    headers = {"Authorization": "Bearer " + config.get('line-bot', 'channel_access_token')}
+    headers = {"Authorization": "Bearer " + lineToken}
     response = requests.request("POST", url, headers=headers, data=payload)
     print(response.text)
 
 if __name__ == '__main__':
     print('成功執行 main 主程式')
-    sendToLine()
+    sendToLine(config.get('line-bot', 'channel_access_token'))
 
 
