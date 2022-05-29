@@ -1,12 +1,6 @@
-from app import line_bot_api, handler
+from app import line_bot_api, handler, user_list
 from handle_house_price_data import load_old_data, display_message
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-
-import configparser
-
-# 讀取 config
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
@@ -15,8 +9,8 @@ def RequestHousePrice(event):
             old_data = load_old_data('/app/old_data.json')
             text = display_message(old_data)
             
-            if event.source.user_id != config.get('line-bot', 'userId'):
-                line_bot_api.push_message(config.get('line-bot', 'userId'), 
+            if event.source.user_id != user_list:
+                line_bot_api.push_message(user_list, 
                     TextSendMessage(text=event.source.user_id))
 
         else:
