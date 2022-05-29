@@ -1,12 +1,13 @@
 from app import line_bot_api, handler
-from handle_house_price_data import get_house_price_data
+from handle_house_price_data import load_old_data, display_message
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         if event.message.text == "給我房價":
-            text = get_house_price_data()
+            old_data = load_old_data('/app/old_data.json')
+            text = display_message(old_data)
             if text == '':
                 text = '目前沒有最新的資料!'
         else:
