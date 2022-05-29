@@ -1,7 +1,7 @@
 from crawler import get_house_pirce_raw_data_from_url
 from app import line_bot_api, user_list
 from linebot.models import TextSendMessage
-# import json, configparser
+import json
 
 # config = configparser.ConfigParser()
 # config.read('config.ini')
