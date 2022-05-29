@@ -3,7 +3,6 @@ from app import line_bot_api
 from linebot.models import TextSendMessage
 import json, configparser
 
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
