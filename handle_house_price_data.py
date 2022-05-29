@@ -1,3 +1,4 @@
+from sympy import li
 from crawler import get_house_pirce_raw_data_from_url
 
 import json
@@ -68,22 +69,24 @@ def get_house_price_data():
         return display_message(new_records)
 
 
-import requests
+# import requests
 import configparser
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 
 
-def sendToLine(lineToken):
-    url = "https://notify-api.line.me/api/notify"
-    payload = {"message": {get_house_price_data()}}
-    headers = {"Authorization": "Bearer " + lineToken}
-    response = requests.request("POST", url, headers=headers, data=payload)
-    print(response.text)
+# def sendToLine(lineToken):
+#     url = "https://notify-api.line.me/api/notify"
+#     payload = {"message": {get_house_price_data()}}
+#     headers = {"Authorization": "Bearer " + lineToken}
+#     response = requests.request("POST", url, headers=headers, data=payload)
+#     print(response.text)
+
+from app import line_bot_api
 
 if __name__ == '__main__':
     print('成功執行 main 主程式')
-    sendToLine(config.get('line-bot', 'channel_access_token'))
-
+    # sendToLine(config.get('line-bot', 'channel_access_token'))
+    line_bot_api.push_message(config.get('line-bot', 'useId'), get_house_price_data())
 
