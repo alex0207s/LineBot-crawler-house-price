@@ -5,7 +5,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-        if event.message.text == "給我房價":
+        if event.message.text == "最新資料":
             old_data = load_old_data('/app/old_data.json')
             text = display_message(old_data)
         else:
