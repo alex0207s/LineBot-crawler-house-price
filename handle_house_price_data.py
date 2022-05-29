@@ -44,7 +44,6 @@ def load_old_data(file_path):
 #     print('第一筆資料為: ', records[0])
 #     return records       
 
-
 def get_house_price_data():
     raw_data = get_house_pirce_raw_data_from_url()
     old_data = load_old_data('/app/old_data.json')
@@ -69,6 +68,22 @@ def get_house_price_data():
         return display_message(new_records)
 
 
+import requests
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+
+def sendToLine(token):
+    url = "https://notify-api.line.me/api/notify"
+    payload = {"message": {get_house_price_data()}}
+    headers = {"Authorization": "Bearer " + config.get('line-bot', 'channel_access_token')}
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print(response.text)
+
 if __name__ == '__main__':
-    print('test')
-    get_house_price_data()
+    print('成功執行 main 主程式')
+    sendToLine()
+
+
