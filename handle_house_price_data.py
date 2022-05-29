@@ -83,9 +83,11 @@ config.read('config.ini')
 #     print(response.text)
 
 from app import line_bot_api
+from linebot.models import TextSendMessage
 
 if __name__ == '__main__':
     print('成功執行 main 主程式')
     # sendToLine(config.get('line-bot', 'channel_access_token'))
-    line_bot_api.push_message(config.get('line-bot', 'userId'), get_house_price_data())
+    line_bot_api.push_message(config.get('line-bot', 'userId'), 
+         TextSendMessage(text=get_house_price_data()))
 
