@@ -1,4 +1,3 @@
-from sympy import li
 from crawler import get_house_pirce_raw_data_from_url
 
 import json
