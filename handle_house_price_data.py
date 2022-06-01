@@ -70,6 +70,6 @@ if __name__ == '__main__':
         print('目前尚未抓到新的交易紀錄')
     else:
         for user in userList.split(','):
-            print(user)
-            # line_bot_api.push_message(Me, TextSendMessage(text=text))
+            # print(user)
+            line_bot_api.push_message(user, TextSendMessage(text=text))
         # line_bot_api.multicast(to = ['U2d7f2e45b5d1487327a98d1cedcc7c17', 'U5e427261f7aac0678bb25ebe7b9cb03e'], messages=text)
