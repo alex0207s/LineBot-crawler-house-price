@@ -12,6 +12,6 @@ config.read('config.ini')
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 Me = config.get('users', 'ME')
-users = config.get('users', 'userList')
+userList = config.get('users', 'userList')
 
 from app import routes, models_for_line
