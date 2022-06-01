@@ -1,4 +1,4 @@
-from app import line_bot_api, Me
+from app import line_bot_api, Me,users
 from linebot.models import TextSendMessage
 from crawler import get_house_pirce_raw_data_from_url
 import json
@@ -22,7 +22,7 @@ def display_message(records, show_old = True):
         price = str(int(record[1][2].replace(',', ''))/10000)
 
         text += str(index+1) + '. \n交易日期: ' + date + '\n地址: ' + address + '\n總價: ' + price + ' 萬\n總面積: ' + area + '(坪)\n\n'   
-        if len(text) >= 280: break
+        if len(text) >= 480: break
         
     return text
 
@@ -69,4 +69,5 @@ if __name__ == '__main__':
     if text == '':
         print('目前尚未抓到新的交易紀錄')
     else:
-        line_bot_api.push_message(Me, TextSendMessage(text=text))
+        # line_bot_api.push_message(Me, TextSendMessage(text=text))
+        line_bot_api.multicast(users, TextSendMessage(text=text))
