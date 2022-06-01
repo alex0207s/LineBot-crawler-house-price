@@ -1,10 +1,7 @@
-from crawler import get_house_pirce_raw_data_from_url
-from app import line_bot_api, user_list
+from app import line_bot_api, users
 from linebot.models import TextSendMessage
+from crawler import get_house_pirce_raw_data_from_url
 import json
-
-# config = configparser.ConfigParser()
-# config.read('config.ini')
 
 target_addresses = [
     '北投段', '北投堡段', '北投埔段', '頂茄荖段', '光華段', '青宅段', '新埔段', '新興段', '新光段',
@@ -71,4 +68,4 @@ if __name__ == '__main__':
     if text == '':
         print('目前尚未抓到新的交易紀錄')
     else:
-        line_bot_api.push_message(user_list, TextSendMessage(text=text))
+        line_bot_api.push_message(users, TextSendMessage(text=text))
