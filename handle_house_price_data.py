@@ -70,4 +70,4 @@ if __name__ == '__main__':
         print('目前尚未抓到新的交易紀錄')
     else:
         # line_bot_api.push_message(Me, TextSendMessage(text=text))
-        line_bot_api.multicast(users, TextSendMessage(text=text))
+        line_bot_api.multicast(to = users, messages=text)
