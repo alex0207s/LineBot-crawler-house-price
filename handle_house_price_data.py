@@ -1,4 +1,4 @@
-from app import line_bot_api, users
+from app import line_bot_api, Me
 from linebot.models import TextSendMessage
 from crawler import get_house_pirce_raw_data_from_url
 import json
@@ -29,6 +29,7 @@ def display_message(records, show_old = True):
 def save_new_data(file_path, records):
     with open(file_path, 'w', encoding='utf8') as f:
         json.dump(records, f, ensure_ascii=False)
+    print('成功寫入新資料，總共有', len(records), '筆資料!')
 
 def load_old_data(file_path):
     with open(file_path, encoding='utf8') as f:
@@ -68,4 +69,4 @@ if __name__ == '__main__':
     if text == '':
         print('目前尚未抓到新的交易紀錄')
     else:
-        line_bot_api.push_message(users, TextSendMessage(text=text))
+        line_bot_api.push_message(Me, TextSendMessage(text=text))
