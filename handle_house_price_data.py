@@ -1,4 +1,4 @@
-from app import line_bot_api, Me,users
+from app import line_bot_api, Me, userList
 from linebot.models import TextSendMessage
 from crawler import get_house_pirce_raw_data_from_url
 import json
@@ -69,5 +69,6 @@ if __name__ == '__main__':
     if text == '':
         print('目前尚未抓到新的交易紀錄')
     else:
-        # line_bot_api.push_message(Me, TextSendMessage(text=text))
-        line_bot_api.multicast(to = ['U2d7f2e45b5d1487327a98d1cedcc7c17', 'U5e427261f7aac0678bb25ebe7b9cb03e'], messages=text)
+        for user in userList:
+            line_bot_api.push_message(Me, TextSendMessage(text=text))
+        # line_bot_api.multicast(to = ['U2d7f2e45b5d1487327a98d1cedcc7c17', 'U5e427261f7aac0678bb25ebe7b9cb03e'], messages=text)
