@@ -57,8 +57,8 @@ def get_house_price_data():
     if len(new_records) == 0:
         return ''
     else:
-        new_data = {**old_data, **new_records}
-        save_new_data('/app/old_data.json', new_data)
+        # new_data = {**old_data, **new_records}
+        # save_new_data('/app/old_data.json', new_data)
         return display_message(new_records, False)
 
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     if text == '':
         print('目前尚未抓到新的交易紀錄')
     else:
-        for user in userList:
+        for user in userList.split(','):
             print(user)
             # line_bot_api.push_message(Me, TextSendMessage(text=text))
         # line_bot_api.multicast(to = ['U2d7f2e45b5d1487327a98d1cedcc7c17', 'U5e427261f7aac0678bb25ebe7b9cb03e'], messages=text)
