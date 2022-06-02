@@ -61,7 +61,7 @@ def get_url_from_connection_log():
             if json.loads(tmp)['message']['params'].get('request') != None:
                 if json.loads(tmp)['message']['params'].get('request').get('url') != None:
                     if target_string in json.loads(tmp)['message']['params'].get('request').get('url'):
-                        print('我要的東西', json.loads(tmp)['message']['params'].get('request').get('url'))
+                        print('網址: ', json.loads(tmp)['message']['params'].get('request').get('url'))
                         return json.loads(tmp)['message']['params'].get('request').get('url')
 
 def get_house_pirce_raw_data_from_url():
