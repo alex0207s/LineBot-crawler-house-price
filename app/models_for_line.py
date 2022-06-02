@@ -1,12 +1,12 @@
-from app import line_bot_api, handler, Me
+from app import line_bot_api, handler, ME
 from handle_house_price_data import load_old_data, display_message
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 @handler.add(MessageEvent, message=TextMessage)
 def RequestHousePrice(event):
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-        if event.source.user_id != Me:
-            line_bot_api.push_message(Me, 
+        if event.source.user_id != ME:
+            line_bot_api.push_message(ME, 
                 TextSendMessage(text=event.source.user_id))
         
         if event.message.text == "最新資料":

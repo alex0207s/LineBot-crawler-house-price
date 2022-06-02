@@ -1,4 +1,4 @@
-from app import line_bot_api, Me, userList
+from app import line_bot_api, userList
 from linebot.models import TextSendMessage
 from crawler import get_house_pirce_raw_data_from_url
 import json
@@ -54,12 +54,9 @@ def get_house_price_data():
                 new_records[deal['e']+deal['a']] = [deal['e'], deal['s'], deal['tp']]
 
     print('新增 ', len(new_records), ' 筆交易紀錄!')
-    if len(new_records) == 0:
-        return ''
-    else:
-        # new_data = {**old_data, **new_records}
-        # save_new_data('/app/old_data.json', new_data)
-        return display_message(new_records, False)
+    
+    if len(new_records) == 0: return ''
+    return display_message(new_records, False)
 
 
 if __name__ == '__main__':
@@ -72,4 +69,3 @@ if __name__ == '__main__':
         for user in userList.split(','):
             print(user)
             line_bot_api.push_message(user, TextSendMessage(text=text))
-        # line_bot_api.multicast(to = ['U2d7f2e45b5d1487327a98d1cedcc7c17', 'U5e427261f7aac0678bb25ebe7b9cb03e'], messages=text)

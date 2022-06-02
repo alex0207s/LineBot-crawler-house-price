@@ -11,7 +11,7 @@ config.read('config.ini')
 # LINE 聊天機器人的基本資料
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
-Me = config.get('users', 'ME')
+ME = config.get('users', 'ME')
 userList = config.get('users', 'userList')
 
 from app import routes, models_for_line
