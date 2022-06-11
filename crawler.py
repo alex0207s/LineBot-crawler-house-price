@@ -35,10 +35,12 @@ def get_search_request_log():
     sleep(1)
     select_town = Select(driver.find_element_by_xpath("//*[@id='p_town']"))
     select_town.select_by_value('M03')
-    
-    # 選取起始月份; 固定在五月
+        
     sleep(1)
+    # 選取起始月份; 固定在五月
     driver.execute_script("document.getElementById('p_startM').value = 5")
+    # 選取終點月份; 固定在六月
+    driver.execute_script("document.getElementById('p_endM').value = 6")
     # 取消勾選房地
     driver.execute_script("document.getElementById('customCheck1').click()")
     # 勾選土地
