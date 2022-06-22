@@ -1,3 +1,4 @@
+from datetime import datetime
 from app import line_bot_api, userList
 from linebot.models import TextSendMessage
 from crawler import get_house_pirce_raw_data_from_url
@@ -69,3 +70,5 @@ if __name__ == '__main__':
         for user in userList.split(','):
             print(user)
             line_bot_api.push_message(user, TextSendMessage(text=text))
+
+    print(datetime.now().ctime())
